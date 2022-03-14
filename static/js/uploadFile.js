@@ -22,5 +22,10 @@ function uploadFiles(files) {
   fetch('/upload', {
     method: 'POST',
     body: formData
-  }).then((response) => console.log(response));
+  })
+    .then((response) => response.json())
+    .then(({ total, success, error }) =>
+      alert(`Total: ${total}\nSucceed: ${success}\nError: ${error}`)
+    )
+    .then((_) => init());
 }

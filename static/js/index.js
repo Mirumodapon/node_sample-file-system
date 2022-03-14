@@ -17,6 +17,10 @@ class Stack {
   check() {
     return this.objs[this.size - 1];
   }
+  empty() {
+    this.objs.length = 0;
+    this.size = 0;
+  }
 }
 
 const pathObjects = new Stack();
@@ -67,11 +71,14 @@ function fetchTree() {
       .then((obj) => resolve(obj));
   });
 }
-(async function () {
+async function init() {
   const tree = await fetchTree();
+  pathObjects.empty();
   pathObjects.push(tree);
   updateCurrentFolder();
-})();
+}
+
+init();
 /* ==================================================== */
 function go(folder) {
   for (let i of pathObjects.check().children) {
