@@ -57,6 +57,10 @@ function updateCurrentFolder() {
     .children.filter((x) => x.type === 'file')
     .map(callback('file'))
     .join('');
+
+  const buttonDOM = document.getElementById('back');
+  if (pathArray.objs.length < 1) buttonDOM.style.display = 'none';
+  else buttonDOM.style.display = 'flex';
 }
 
 /* ==================================================== */
